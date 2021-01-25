@@ -25,6 +25,7 @@ private slots:
 
     void testDefaultConstructor();
     void testJsonConverters();
+    void testDatastreamConverters();
 
 private:
     QJsonDocument m_json;
@@ -109,6 +110,38 @@ void UserObjectTest::testJsonConverters()
 
     const QJsonObject convertedJson = u1->toJson();
     QCOMPARE(data, convertedJson);
+}
+
+void UserObjectTest::testDatastreamConverters()
+{
+    auto u1 = User::fromJson(m_json, this);
+
+    QByteArray outBa;
+    QDataStream out(&outBa, QIODevice::WriteOnly);
+    out << *u1;
+
+    const QByteArray inBa = outBa;
+    QDataStream in(inBa);
+    auto u2 = new User(this);
+    in >> *u2;
+
+    QCOMPARE(u1->isEnabled(), u2->isEnabled());
+    QCOMPARE(u1->storageLocation(), u2->storageLocation());
+    QCOMPARE(u1->id(), u2->id());
+    QCOMPARE(u1->lastLogin(), u2->lastLogin());
+    QCOMPARE(u1->backend(), u2->backend());
+    QCOMPARE(u1->subadmin(), u2->subadmin());
+    QCOMPARE(u1->quota(), u2->quota());
+    QCOMPARE(u1->email(), u2->email());
+    QCOMPARE(u1->displayname(), u2->displayname());
+    QCOMPARE(u1->phone(), u2->phone());
+    QCOMPARE(u1->address(), u2->address());
+    QCOMPARE(u1->website(), u2->website());
+    QCOMPARE(u1->twitter(), u2->twitter());
+    QCOMPARE(u1->groups(), u2->groups());
+    QCOMPARE(u1->language(), u2->language());
+    QCOMPARE(u1->locale(), u2->locale());
+    QCOMPARE(u1->backendCapabilities(), u2->backendCapabilities());
 }
 
 QTEST_MAIN(UserObjectTest)
