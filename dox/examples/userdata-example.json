@@ -1,0 +1,39 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 100,
+            "message": "OK",
+            "totalitems": "",
+            "itemsperpage": ""
+        },
+        "data": {
+            "enabled": true,
+            "storageLocation": "/srv/www/nextcloud/data/tester",
+            "id": "tester",
+            "lastLogin": 1611397041000,
+            "backend": "Database",
+            "subadmin": ["group1"],
+            "quota": {
+                "free": 209639130,
+                "used": 76070,
+                "total": 209715200,
+                "relative": 0.04,
+                "quota": 209715200
+            },
+            "email": "tester@example.net",
+            "displayname": "Tester",
+            "phone": "+49123456789",
+            "address": "Somewhere over the rainbow",
+            "website": "https://example.net",
+            "twitter": "@tester",
+            "groups": ["group1", "group2"],
+            "language": "de_DE",
+            "locale": "de_DE",
+            "backendCapabilities": {
+                "setDisplayName": true,
+                "setPassword": true
+            }
+        }
+    }
+}

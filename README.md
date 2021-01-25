@@ -1,5 +1,8 @@
 # libwolkanlin
-Qt based library for some core Nextcloud APIs.
+[Qt](https://www.qt.io/) based library for some core [Nextcloud](https://nextcloud.com/) APIs,
+especially the [OCS API](https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/index.html),
+the [Login Flow API](https://docs.nextcloud.com/server/latest/developer_manual/client_apis/LoginFlow/index.html)
+and the [Remote Wipe API](https://docs.nextcloud.com/server/latest/developer_manual/client_apis/RemoteWipe/index.html).
 
 Wolkanlin is the old high german word for small cloud.
 

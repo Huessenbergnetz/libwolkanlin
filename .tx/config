@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+
+[libwolkanlin.main]
+file_filter = translations/libwolkanlin_<lang>.ts
+minimum_perc = 0
+source_file = translations/libwolkanlin.ts
+source_lang = en
+type = QT
+
