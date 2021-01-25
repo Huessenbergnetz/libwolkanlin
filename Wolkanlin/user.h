@@ -353,9 +353,9 @@ public:
      * \brief Creates a new %User object with the given \a parent from \a json.
      *
      * Will convert the \a json into a JSON object at first. If the \a json is empty
-     * or does not contain an object, a \c nullptr will be returned. See also the
-     * <A href="#user-json-example">JSON representation example</A> to learn more about the
-     * expected JSON object structure.
+     * or does not contain an object, a pointer to an empty %ServerStatus object will be returned.
+     * See also the <A href="#user-json-example">JSON representation example</A> to learn
+     * more about the expected JSON object structure.
      */
     static User *fromJson(const QJsonDocument &json, QObject *parent = nullptr);
     /*!
@@ -363,7 +363,7 @@ public:
      *
      * Will read the data from a \a json object as describe in the <A href="#user-json-example">JSON representation example</A>.
      * Can read from the root object as well as from the “ocs“ and “data“ keys content.
-     * If the JSON does not contain valid data, a \c nullptr will be returned.
+     * If \a json is empty, a pointer to an empty %User object will be returned.
      */
     static User *fromJson(const QJsonObject &json, QObject *parent = nullptr);
 

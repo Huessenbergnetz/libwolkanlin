@@ -4,7 +4,7 @@ void MyClass::getUser(const QString &id)
     if (getUserJob->exec()) {
         // handle the result, e.g. create a new User object
         auto user = User::fromJson(getUserJob->result());
-        if (user) {
+        if (!user.isEmpty()) {
             // do something with the User object
         }
     } else {

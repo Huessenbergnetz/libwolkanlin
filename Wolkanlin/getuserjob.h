@@ -47,6 +47,7 @@ class GetUserJobPrivate;
  * \include get-user-async.cpp
  * There is also the possibility to do it synchronously.
  * \include get-user-sync.cpp
+ * Another way is to use User::get() function.
  *
  * \headerfile "" <Wolkanlin/GetUserJob>
  */
