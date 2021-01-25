@@ -5,6 +5,8 @@
 
 #include <QTest>
 #include "testconfig.h"
+#include "getserverstatusjob.h"
+#include "serverstatus.h"
 #include "getapppasswordjob.h"
 #include "deleteapppasswordjob.h"
 #include "getuserjob.h"
@@ -21,6 +23,8 @@ public:
 
 private slots:
     void initTestCase();
+
+    void testGetServerStatusJob();
 
     void testGetAppPassword();
     void testGetAppPasswordInvalidUser();
@@ -57,6 +61,18 @@ void ApiCallsTest::initTestCase()
 
     m_adminConfig = new TestConfig(true, this);
     QVERIFY(m_adminConfig->loadConfig());
+}
+
+void ApiCallsTest::testGetServerStatusJob()
+{
+    auto job = new GetServerStatusJob(this);
+    QVERIFY(job->exec());
+    auto s1 = ServerStatus::fromJson(job->result());
+    QVERIFY(!s1->isEmpty());
+
+    auto s2 = new ServerStatus(this);
+    s2->get(false);
+    QVERIFY(!s2->isEmpty());
 }
 
 void ApiCallsTest::testGetAppPassword()

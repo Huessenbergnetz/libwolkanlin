@@ -21,6 +21,7 @@ endfunction(wolkanlin_unit_test)
 
 wolkanlin_unit_test(testquotaobject)
 wolkanlin_unit_test(testuserobject)
+wolkanlin_unit_test(testserverstatusobject)
 
 if(WITH_API_TESTS)
     add_executable(testapicalls_exec testapicalls.cpp testconfig.h testconfig.cpp)

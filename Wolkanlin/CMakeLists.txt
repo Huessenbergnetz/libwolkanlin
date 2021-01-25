@@ -16,6 +16,10 @@ set(wolkanlin_SRCS
     getapppasswordjob_p.h
     deleteapppasswordjob.cpp
     deleteapppasswordjob_p.h
+    getserverstatusjob.cpp
+    getserverstatusjob_p.h
+    serverstatus.cpp
+    serverstatus_p.h
 )
 
 set(wolkanlin_HEADERS
@@ -35,6 +39,10 @@ set(wolkanlin_HEADERS
     GetAppPasswordJob
     deleteapppasswordjob.h
     DeleteAppPasswordJob
+    getserverstatusjob.h
+    GetServerStatusJob
+    serverstatus.h
+    ServerStatus
 )
 
 set(wolkanlin_PRIVATE_HEADERS
