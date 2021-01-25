@@ -391,7 +391,7 @@ Q_SIGNALS:
      * \brief Notifier signal for the \link User::enabled enabled\endlink property.
      * \sa isEnabled()
      */
-    void enabledChanged(bool enabeld);
+    void enabledChanged(bool enabled);
     /*!
      * \brief Notifier signal for the \link User::storageLocation storageLocation\endlink property.
      * \sa storageLocation()
