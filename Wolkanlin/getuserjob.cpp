@@ -103,7 +103,7 @@ QString GetUserJob::errorString() const
         return qtTrId("libwolkanlin-error-get-user-empty-id");
     } else if (error() == NotFound) {
         //: Error message if the user was not found, %1 will be replaced by the user name.
-        //% "Cannot get user information for %1. The user was not found."
+        //% "Can not get user information for %1. The user was not found."
         return qtTrId("libwolkanlin-error-get-user-not-found").arg(errorText());
     } else {
         return Job::errorString();

@@ -61,7 +61,6 @@ public:
     quint16 requestTimeout = 300;
     quint8 retryCount = 0;
     bool requiresAuth = true;
-    bool checkForWipe = true;
 
     void handleSslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
 

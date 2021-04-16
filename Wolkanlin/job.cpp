@@ -160,7 +160,7 @@ void JobPrivate::requestFinished()
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
     if (Q_LIKELY(timeoutTimer && timeoutTimer->isActive())) {
-        qCDebug(wlCore) << "Stopping request timeout timer with" << (d->timeoutTimer->remainingTime()/1000)) << "seconds left.";
+        qCDebug(wlCore) << "Stopping request timeout timer with" << (timeoutTimer->remainingTime()/1000)) << "seconds left.";
         timeoutTimer->stop();
     }
 #endif
@@ -245,7 +245,7 @@ std::pair<QByteArray, QByteArray> JobPrivate::buildPayload() const
 bool JobPrivate::checkInput()
 {
     if (Q_UNLIKELY(configuration->host().isEmpty())) {
-        emitError(MissingConfig);
+        emitError(MissingHost);
         qCCritical(wlCore) << "Can not send request: missing host.";
         return false;
     }
@@ -431,7 +431,7 @@ void Job::sendRequest()
         nr.setRawHeader(QByteArrayLiteral("Accept"), QByteArrayLiteral("text/html,application/xhtml+xml,application/xml"));
         break;
     case ExpectedContentType::Invalid:
-        Q_ASSERT_X(false, "sending request", "invalid exepected content type");
+        Q_ASSERT_X(false, "sending request", "invalid expected content type");
         break;
     default:
         break;
