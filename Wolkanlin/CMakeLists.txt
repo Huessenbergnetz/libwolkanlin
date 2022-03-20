@@ -20,6 +20,8 @@ set(wolkanlin_SRCS
     getserverstatusjob_p.h
     serverstatus.cpp
     serverstatus_p.h
+    getwipestatusjob.cpp
+    getwipestatusjob_p.h
 )
 
 set(wolkanlin_HEADERS
@@ -43,6 +45,8 @@ set(wolkanlin_HEADERS
     GetServerStatusJob
     serverstatus.h
     ServerStatus
+    getwipestatusjob.h
+    GetWipeStatusJob
 )
 
 set(wolkanlin_PRIVATE_HEADERS

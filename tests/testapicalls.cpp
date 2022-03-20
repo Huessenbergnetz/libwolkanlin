@@ -11,6 +11,7 @@
 #include "deleteapppasswordjob.h"
 #include "getuserjob.h"
 #include "user.h"
+#include "getwipestatusjob.h"
 
 using namespace Wolkanlin;
 
@@ -30,6 +31,10 @@ private slots:
     void testGetAppPasswordInvalidUser();
     void testGetAppPasswordInvalidPassword();
     void testGetAppPasswordAlreadyConverted();
+
+    void testGetWipeStatusJobMissingToken();
+    void testGetWipeStatusJobInvalidPassword();
+    void testGetWipeStatusJobNoWipe();
 
     void testGetUserJob();
     void testGetUserJobNotFound();
@@ -111,6 +116,37 @@ void ApiCallsTest::testGetAppPasswordAlreadyConverted()
     auto job = new GetAppPasswordJob(this);
     QVERIFY(!job->exec());
     QCOMPARE(job->error(), static_cast<int>(Wolkanlin::AlreadyAppPassword));
+}
+
+void ApiCallsTest::testGetWipeStatusJobMissingToken()
+{
+    auto conf = new TestConfig(false, this);
+    QVERIFY(conf->loadConfig());
+    conf->setPassword(QString());
+    auto job = new GetWipeStatusJob(this);
+    job->setConfiguration(conf);
+    QVERIFY(!job->exec());
+    QCOMPARE(job->error(), static_cast<int>(Wolkanlin::MissingPassword));
+}
+
+void ApiCallsTest::testGetWipeStatusJobInvalidPassword()
+{
+    auto conf = new TestConfig(false, this);
+    QVERIFY(conf->loadConfig());
+    conf->setPassword(m_userConfig->password() + m_userConfig->password());
+    auto job = new GetWipeStatusJob(this);
+    job->setConfiguration(conf);
+    QVERIFY(job->exec());
+    QCOMPARE(job->error(), 0);
+    QVERIFY(job->result().isEmpty());
+}
+
+void ApiCallsTest::testGetWipeStatusJobNoWipe()
+{
+    auto job = new GetWipeStatusJob(this);
+    QVERIFY(job->exec());
+    QCOMPARE(job->error(), 0);
+    QVERIFY(job->result().isEmpty());
 }
 
 void ApiCallsTest::testGetUserJob()
