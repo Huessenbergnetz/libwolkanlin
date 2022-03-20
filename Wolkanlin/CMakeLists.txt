@@ -58,16 +58,16 @@ if (NOT WITH_KDE)
     list(APPEND wolkanlin_SRCS wjob.cpp wjob_p.h)
 endif (NOT WITH_KDE)
 
-add_library(wolkanlin
+add_library(WolkanlinQt${QT_VERSION_MAJOR}
     ${wolkanlin_SRCS}
     ${wolkanlin_HEADERS}
     ${wolkanlin_PRIVATE_HEADERS}
 )
 
-add_library(WolkanlinQt${QTVERMAJ}::Core ALIAS wolkanlin)
+add_library(WolkanlinQt${QTVERMAJ}::Core ALIAS WolkanlinQt${QT_VERSION_MAJOR})
 
 if(CMAKE_VERSION GREATER_EQUAL "3.16.0")
-    target_precompile_headers(wolkanlin
+    target_precompile_headers(WolkanlinQt${QT_VERSION_MAJOR}
         PRIVATE
             <QString>
             <QStringList>
@@ -79,16 +79,16 @@ if(CMAKE_VERSION GREATER_EQUAL "3.16.0")
     )
 endif(CMAKE_VERSION GREATER_EQUAL "3.16.0")
 
-target_compile_features(wolkanlin PUBLIC cxx_std_14)
+target_compile_features(WolkanlinQt${QT_VERSION_MAJOR} PUBLIC cxx_std_14)
 
-target_link_libraries(wolkanlin
+target_link_libraries(WolkanlinQt${QT_VERSION_MAJOR}
     PUBLIC
-        Qt5::Core
+        Qt${QT_VERSION_MAJOR}::Core
     PRIVATE
-        Qt5::Network
+        Qt${QT_VERSION_MAJOR}::Network
 )
 
-target_compile_definitions(wolkanlin
+target_compile_definitions(WolkanlinQt${QT_VERSION_MAJOR}
     PRIVATE
         QT_NO_KEYWORDS
         QT_NO_CAST_TO_ASCII
@@ -105,22 +105,22 @@ target_compile_definitions(wolkanlin
 
 if (WITH_KDE)
     message(STATUS "KDE support enabled")
-    target_compile_definitions(wolkanlin
+    target_compile_definitions(WolkanlinQt${QT_VERSION_MAJOR}
         PUBLIC
             WOLKANLIN_WITH_KDE
     )
-    target_link_libraries(wolkanlin
+    target_link_libraries(WolkanlinQt${QT_VERSION_MAJOR}
         PUBLIC
             KF5::CoreAddons
     )
 endif (WITH_KDE)
 
 if(ENABLE_MAINTAINER_FLAGS)
-    target_compile_definitions(wolkanlin
+    target_compile_definitions(WolkanlinQt${QT_VERSION_MAJOR}
         PRIVATE
             QT_DEPRECATED_WARNINGS
     )
-    target_compile_options(wolkanlin
+    target_compile_options(WolkanlinQt${QT_VERSION_MAJOR}
         PRIVATE
             -Wall
             -Wcast-align
@@ -134,12 +134,12 @@ endif(ENABLE_MAINTAINER_FLAGS)
 
 get_property(_current_parent_dir DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY PARENT_DIRECTORY)
 
-target_include_directories(wolkanlin PUBLIC
+target_include_directories(WolkanlinQt${QT_VERSION_MAJOR} PUBLIC
     $<BUILD_INTERFACE:${_current_parent_dir}>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/wolkanlin-qt${QTVERMAJ}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/wolkanlin-qt${QT_VERSION_MAJOR}>
 )
 
-set_target_properties(wolkanlin PROPERTIES
+set_target_properties(WolkanlinQt${QT_VERSION_MAJOR} PROPERTIES
     EXPORT_NAME Core
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
@@ -147,11 +147,11 @@ set_target_properties(wolkanlin PROPERTIES
     PUBLIC_HEADER "${wolkanlin_HEADERS}"
 )
 
-install(TARGETS wolkanlin
+install(TARGETS WolkanlinQt${QT_VERSION_MAJOR}
     EXPORT WolkanlinTargets
     DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT libs
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wolkanlin-qt${QTVERMAJ}/Wolkanlin COMPONENT devel
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wolkanlin-qt${QT_VERSION_MAJOR}/Wolkanlin COMPONENT devel
 )

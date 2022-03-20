@@ -9,7 +9,8 @@ project(libwolkanlin
         DESCRIPTION "Qt based library to access some core Nextcloud APIs."
         LANGUAGES CXX)
 
-find_package(Qt5 5.6.0 REQUIRED COMPONENTS Core Network)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Network REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} 5.6.0 REQUIRED COMPONENTS Core Network)
 
 # Include our cmake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
@@ -51,27 +52,25 @@ if (WITH_KDE)
     find_package(KF5CoreAddons REQUIRED)
 endif (WITH_KDE)
 
-set(QTVERMAJ ${Qt5_VERSION_MAJOR} CACHE INTERNAL "The currently used Qt major version.")
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QTVERMAJ}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}Config.cmake
     @ONLY
 )
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config-version.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QTVERMAJ}ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}ConfigVersion.cmake
     @ONLY
 )
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QTVERMAJ}Config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QTVERMAJ}ConfigVersion.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt${QTVERMAJ}/
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}ConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt{QT_VERSION_MAJOR}/
     COMPONENT devel
 )
 
 install(EXPORT WolkanlinTargets
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt${QTVERMAJ}/
-    FILE WolkanlinQt${QTVERMAJ}Targets.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt{QT_VERSION_MAJOR}/
+    FILE WolkanlinQt{QT_VERSION_MAJOR}Targets.cmake
     NAMESPACE Wolkanlin::
     COMPONENT devel
 )

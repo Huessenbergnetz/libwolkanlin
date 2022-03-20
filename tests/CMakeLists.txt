@@ -11,12 +11,12 @@ option(TESTS_IGNORE_SSL_ERRORS "Ignore SSL errors when performing API tests. Can
 
 add_executable(testdefaultvalues_exec testdefaultvalues.cpp testconfig.h testconfig.cpp testnamfactory.h testnamfactory.cpp)
 add_test(NAME testdefaultvalues COMMAND testdefaultvalues_exec)
-target_link_libraries(testdefaultvalues_exec Qt5::Test Qt5::Network wolkanlin)
+target_link_libraries(testdefaultvalues_exec Qt${QT_VERSION_MAJOR}::Test Qt${QT_VERSION_MAJOR}::Network WolkanlinQt${QT_VERSION_MAJOR})
 
 function(wolkanlin_unit_test _testname)
     add_executable(${_testname}_exec ${_testname}.cpp testconfig.h testconfig.cpp)
     add_test(NAME ${_testname} COMMAND ${_testname}_exec)
-    target_link_libraries(${_testname}_exec Qt5::Test wolkanlin)
+    target_link_libraries(${_testname}_exec Qt${QT_VERSION_MAJOR}::Test WolkanlinQt${QT_VERSION_MAJOR})
 endfunction(wolkanlin_unit_test)
 
 wolkanlin_unit_test(testquotaobject)
@@ -25,9 +25,10 @@ wolkanlin_unit_test(testserverstatusobject)
 wolkanlin_unit_test(testjobs)
 
 if(WITH_API_TESTS)
+    find_package(SchauerQt5 REQUIRED)
     add_executable(testapicalls_exec testapicalls.cpp testconfig.h testconfig.cpp)
-    add_test(NAME testapicalls COMMAND testapicalls_exec)
-    target_link_libraries(testapicalls_exec Qt5::Test wolkanlin)
+#    add_test(NAME testapicalls COMMAND testapicalls_exec)
+    target_link_libraries(testapicalls_exec Qt${QT_VERSION_MAJOR}::Test SchauerQt${QT_VERSION_MAJOR} WolkanlinQt${QT_VERSION_MAJOR})
     target_compile_definitions(testapicalls_exec
         PRIVATE
             WOLKANLIN_TESTS_SERVER_URL="${TESTS_SERVER_URL}"
