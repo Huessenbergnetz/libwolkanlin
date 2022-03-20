@@ -108,7 +108,7 @@ public:
     /*!
      * \brief Returns the API result after successful request.
      *
-     * If the API request has been successful and BJob::error() returns \c 0, this
+     * If the API request has been successful and WJob::error() returns \c 0, this
      * function returns the requested JSON data (if any).
      *
      * \sa succeeded()
@@ -128,7 +128,7 @@ protected:
     /*!
      * \brief Performs basic checks and sets up and sends the request.
      *
-     * This will be called in the reimplementation of BJob::start() by
+     * This will be called in the reimplementation of WJob::start() by
      * class that are derived from %Job.
      */
     void sendRequest();
@@ -143,7 +143,7 @@ Q_SIGNALS:
     /*!
      * \brief Emitted when the API request has been successful finished.
      *
-     * This signal is triggered together with BJob::finished() and BJob::result()
+     * This signal is triggered together with WJob::finished() and WJob::result()
      * if the API request was successful. \a json will contain the data requested
      * from the remote server.
      *
@@ -154,7 +154,7 @@ Q_SIGNALS:
     /*!
      * \brief Emitted when the API request has been failed.
      *
-     * This signal is triggered together with BJob::finished() and BJob::result()
+     * This signal is triggered together with WJob::finished() and WJob::result()
      * if the API request has been failed. \a errorCode wile have the code of the
      * occured error, \a errorString will contain a human-readable error message.
      *

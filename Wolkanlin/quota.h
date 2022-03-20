@@ -166,7 +166,7 @@ public:
      *    "relative": 0.04,
      *    "quota": 209715200
      * }
-     * \endcode´
+     * \endcode
      *
      * If isNull() returns \c true, an empty JSON object will be returned.
      *
