@@ -30,6 +30,7 @@ public:
     void setLanguage(const QString &language);
     void setLocale(const QString &_locale);
     void setBackendCapabilities(User::Capabilities _backendCapabilties);
+    void setIsLoading(bool _isLoading);
 
     void onGetUserSucceeded(const QJsonDocument &json);
 
@@ -54,6 +55,7 @@ public:
     QDateTime lastLogin;
     User::Capabilities backendCapabilities;
     bool enabled = false;
+    bool isLoading = false;
 
 private:
     Q_DECLARE_PUBLIC(User)

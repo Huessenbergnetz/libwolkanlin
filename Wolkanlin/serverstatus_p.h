@@ -21,6 +21,7 @@ public:
     void setEdition(const QString &_edition);
     void setProductname(const QString &_productname);
     void setExtendedSupport(bool _extendedSupport);
+    void setIsLoading(bool _isLoading);
 
     void onGetServerStatusSucceeded(const QJsonDocument &json);
 
@@ -33,6 +34,7 @@ public:
     bool maintenance = false;
     bool needsDbUpgrade = false;
     bool extendedSupport = false;
+    bool isLoading = false;
 
 private:
     Q_DECLARE_PUBLIC(ServerStatus)

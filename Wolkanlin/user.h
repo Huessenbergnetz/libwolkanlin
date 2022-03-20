@@ -222,6 +222,18 @@ class WOLKANLIN_LIBRARY User : public QObject
      * \li void backendCapabilitiesChanged(Wolkanlin::User::Capabilities backendCapabilities)
      */
     Q_PROPERTY(Wolkanlin::User::Capabilities backendCapabilities READ backendCapabilities NOTIFY backendCapabilitiesChanged)
+    /*!
+     * \brief Returns \c true while the object is loading data.
+     *
+     * When calling get() this indicates the loading/request process is running.
+     *
+     * \par Access methods
+     * \li bool isLoading() const
+     *
+     * \par Notifier signal
+     * void isLoadingChanged(bool isLoading)
+     */
+    Q_PROPERTY(bool isLoading READ isLoading NOTIFY isLoadingChanged)
 public:
     /*!
      * \brief This enum describes the capabilities the user has on the backend.
@@ -333,6 +345,11 @@ public:
      * \sa void backendCapabilitiesChanged()
      */
     Capabilities backendCapabilities() const;
+    /*!
+     * \brief Getter function for the \link User::isLoading isLoading\endlink property.
+     * \sa void isLoadingChanged()
+     */
+    bool isLoading() const;
 
     /*!
      * \brief Returns \c true if the %User object is empty, otherwise returns \c false.
@@ -372,7 +389,8 @@ public:
      *
      * This will use GetUserJob internally to get the data and update the properties according
      * to the result. You can connect to the finished() signal to handle the data after getting it.
-     * To handle errors, connect to the failed() signal.
+     * To handle errors, connect to the failed() signal. While the request is running,
+     * \link User::isLoading isLoading\endlink returns \c true.
      *
      * By default, the request will be performed asynchronously. Set \a async to \c false to get
      * the data synchronously. If you do not want to use the Wolkanlin::defaultConfiguration() you
@@ -472,6 +490,11 @@ Q_SIGNALS:
      * \sa backendCapabilities()
      */
     void backendCapabilitiesChanged(Wolkanlin::User::Capabilities backendCapabilities);
+    /*!
+     * \brief Notifier signal for the \link User::isLoading isLoading\endlink property.
+     * \sa isLoading()
+     */
+    void isLoadingChanged(bool isLoading);
 
     /*!
      * \brief Emitted when getting user meta data succeeded.

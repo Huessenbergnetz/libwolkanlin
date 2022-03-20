@@ -69,6 +69,12 @@ bool ServerStatus::hasExtendedSupport() const
     return d->extendedSupport;
 }
 
+bool ServerStatus::isLoading() const
+{
+    Q_D(const ServerStatus);
+    return d->isLoading;
+}
+
 bool ServerStatus::isEmpty() const
 {
     Q_D(const ServerStatus);
@@ -228,6 +234,16 @@ void ServerStatusPrivate::setExtendedSupport(bool _extendedSupport)
         extendedSupport = _extendedSupport;
         Q_Q(ServerStatus);
         Q_EMIT q->extendedSupportChanged(extendedSupport);
+    }
+}
+
+void ServerStatusPrivate::setIsLoading(bool _isLoading)
+{
+    if (isLoading != _isLoading) {
+        qCDebug(wlCore) << "Changing isLoading from" << isLoading << "to" << _isLoading;
+        isLoading = _isLoading;
+        Q_Q(ServerStatus);
+        Q_EMIT q->isLoadingChanged(isLoading);
     }
 }
 

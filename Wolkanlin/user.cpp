@@ -125,6 +125,12 @@ User::Capabilities User::backendCapabilities() const
     return d->backendCapabilities;
 }
 
+bool User::isLoading() const
+{
+    Q_D(const User);
+    return d->isLoading;
+}
+
 bool User::isEmpty() const
 {
     Q_D(const User);
@@ -231,6 +237,8 @@ bool User::get(const QString &id, bool async, AbstractConfiguration *config)
 {
     Q_D(User);
 
+    d->setIsLoading(true);
+
     auto getUserJob = new GetUserJob(id, this);
     if (config) {
         getUserJob->setConfiguration(config);
@@ -241,6 +249,9 @@ bool User::get(const QString &id, bool async, AbstractConfiguration *config)
             d->onGetUserSucceeded(json);
         });
         connect(getUserJob, &GetUserJob::failed, this, &User::failed);
+        connect(getUserJob, &GetUserJob::failed, this, [d](){
+            d->setIsLoading(false);
+        });
         getUserJob->start();
         return true;
     } else {
@@ -250,6 +261,7 @@ bool User::get(const QString &id, bool async, AbstractConfiguration *config)
             return true;
         } else {
             Q_EMIT failed(getUserJob->error(), getUserJob->errorString());
+            d->setIsLoading(false);
             getUserJob->deleteLater();
             return false;
         }
@@ -426,6 +438,16 @@ void UserPrivate::setBackendCapabilities(User::Capabilities _backendCapabilties)
     }
 }
 
+void UserPrivate::setIsLoading(bool _isLoading)
+{
+    if (isLoading != _isLoading) {
+        qCDebug(wlCore) << "Changing isLoading from" << isLoading << "to" << _isLoading;
+        isLoading = _isLoading;
+        Q_Q(User);
+        Q_EMIT q->isLoadingChanged(isLoading);
+    }
+}
+
 void UserPrivate::onGetUserSucceeded(const QJsonDocument &json)
 {
     const QJsonObject data = json.object().value(QStringLiteral("ocs")).toObject().value(QStringLiteral("data")).toObject();
@@ -457,6 +479,7 @@ void UserPrivate::onGetUserSucceeded(const QJsonDocument &json)
     }
     setBackendCapabilities(caps);
 
+    setIsLoading(false);
     Q_Q(User);
     Q_EMIT q->finished();
 }

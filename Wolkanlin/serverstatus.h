@@ -132,6 +132,18 @@ class WOLKANLIN_LIBRARY ServerStatus : public QObject
      * \li void extendedSupportChanged(bool extendedSupport)
      */
     Q_PROPERTY(bool extendedSupport READ hasExtendedSupport NOTIFY extendedSupportChanged)
+    /*!
+     * \brief Returns \c true while the object is loading data.
+     *
+     * When calling get() this indicates the loading/request process is running.
+     *
+     * \par Access methods
+     * \li bool isLoading() const
+     *
+     * \par Notifier signal
+     * void isLoadingChanged(bool isLoading)
+     */
+    Q_PROPERTY(bool isLoading READ isLoading NOTIFY isLoadingChanged)
 public:
     /*!
      * \brief Constructs a new empty %ServerStatus object with the given \a parent.
@@ -185,6 +197,11 @@ public:
      */
     bool hasExtendedSupport() const;
     /*!
+     * \brief Getter function for the \link ServerStatus::isLoading isLoading\endlink property.
+     * \sa isLoadingChanged()
+     */
+    bool isLoading() const;
+    /*!
      * \brief Returns \c true if the %ServerStatus object is empty, otherwise returns \c false.
      *
      * The %ServerStatus object is empty, if no \link ServerStatus::version version\endlink has been set.
@@ -223,7 +240,8 @@ public:
      *
      * This will use GetServerStatusJob internally to get the data and update the properties
      * according to the result. You can connect to the finished() signal to handle the data after
-     * getting it. To handle errors, connect to the failed() signal.
+     * getting it. To handle errors, connect to the failed() signal. While the request is running,
+     * \link ServerStatus::isLoading isLoading\endlink returns \c true.
      *
      * If \a config is not set, Wolkanlin::defaultConfiguration() will be used.
      *
@@ -277,6 +295,11 @@ Q_SIGNALS:
      * \sa hasExtendedSupport()
      */
     void extendedSupportChanged(bool extendedSupport);
+    /*!
+     * \brief Notifier signal for the \link ServerStatus::isLoading isLoading\endlink property.
+     * \sa isLoading()
+     */
+    void isLoadingChanged(bool isLoading);
 
     void finished();
 
