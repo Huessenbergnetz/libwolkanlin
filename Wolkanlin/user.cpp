@@ -455,7 +455,7 @@ void UserPrivate::onGetUserSucceeded(const QJsonDocument &json)
     setEnabled(data.value(QStringLiteral("enabled")).toBool());
     setStorageLocation(data.value(QStringLiteral("storageLocation")).toString());
     setId(data.value(QStringLiteral("id")).toString());
-    setLastLogin(QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(data.value(QStringLiteral("lastLogin")).toDouble())));
+    setLastLogin(QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(data.value(QStringLiteral("lastLogin")).toDouble()), Qt::UTC));
     setBackend(data.value(QStringLiteral("backend")).toString());
     setSubadmin(jsonArrayToStringList(data.value(QStringLiteral("subadmin"))));
     setQuota(Quota::fromJson(data.value(QStringLiteral("quota")).toObject()));
