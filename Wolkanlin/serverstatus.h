@@ -301,8 +301,22 @@ Q_SIGNALS:
      */
     void isLoadingChanged(bool isLoading);
 
+    /*!
+     * \brief Emitted when getting server status data succeeded.
+     *
+     * When using get(), this will be emitted after the data has been set to the object.
+     *
+     * \sa failed()
+     */
     void finished();
 
+    /*!
+     * \brief Emitten when getting server status data failed.
+     *
+     * When using get(), this will be emitted after requesting the data failed.
+     *
+     * \sa finished()
+     */
     void failed(int error, const QString &errorString);
 
 private:
