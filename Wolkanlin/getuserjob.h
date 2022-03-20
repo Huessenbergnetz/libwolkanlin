@@ -29,7 +29,7 @@ class GetUserJobPrivate;
  * GET
  *
  * \par API route
- * /ocs/v1.php/cloud/users/{USERID}
+ * /ocs/v1.php/cloud/users/{\link GetUserJob::id id\endlink}
  *
  * \par API docs
  * https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/ocs-api-overview.html#user-metadata

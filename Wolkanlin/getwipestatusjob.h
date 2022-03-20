@@ -18,7 +18,7 @@ class GetWipeStatusJobPrivate;
  * \brief Obtains wipe status for a specific token from the Nextcloud server.
  *
  * Once you receive a 401 or 403 status response in another request, you should
- * use this job to obtain the wipe status form the Nextcloud server. This only
+ * use this job to obtain the wipe status from the Nextcloud server. This only
  * works if you have created a dedicated application token using the login flow.
  *
  * If the \link GetWipeStatusJob::token token\endlink property has not been set,

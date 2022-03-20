@@ -14,6 +14,28 @@ namespace Wolkanlin {
 
 class DeleteAppPasswordJobPrivate;
 
+/*!
+ * \brief Deletes an application password/token on the server.
+ *
+ * When an account on a client is removed for housekeeping it is desired
+ * to destroy the application token in use. The token to delete is taken
+ * from the user authentication data provided in the \link Job::configuration
+ * configuration\endlink property.
+ *
+ * \par Mandatory properties
+ * \li Job::configuration
+ *
+ * \par API method
+ * DELETE
+ *
+ * \par API rout
+ * /ocs/v2.php/core/apppassword
+ *
+ * \par API docs
+ * https://docs.nextcloud.com/server/latest/developer_manual/client_apis/LoginFlow/index.html#deleting-an-app-password
+ *
+ * \headerfile "" <Wolkanlin/DeleteAppPasswordJob>
+ */
 class DeleteAppPasswordJob : public Job
 {
     Q_OBJECT
