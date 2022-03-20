@@ -22,9 +22,9 @@ Quota::Quota(qint64 free, qint64 used, qint64 quota, qint64 total, double relati
     d->quota = quota;
     d->total = total;
     if (relative < 0.0) {
-        d->relative = relative;
+        d->relative = 0.0;
     } else if (relative > 100.0) {
-        d->relative = relative;
+        d->relative = 100.0;
     } else {
         d->relative = relative;
     }
