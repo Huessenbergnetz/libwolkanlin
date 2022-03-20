@@ -64,7 +64,7 @@ add_library(WolkanlinQt${QT_VERSION_MAJOR}
     ${wolkanlin_PRIVATE_HEADERS}
 )
 
-add_library(WolkanlinQt${QTVERMAJ}::Core ALIAS WolkanlinQt${QT_VERSION_MAJOR})
+add_library(WolkanlinQt${QT_VERSION_MAJOR}::Core ALIAS WolkanlinQt${QT_VERSION_MAJOR})
 
 if(CMAKE_VERSION GREATER_EQUAL "3.16.0")
     target_precompile_headers(WolkanlinQt${QT_VERSION_MAJOR}
@@ -143,7 +143,6 @@ set_target_properties(WolkanlinQt${QT_VERSION_MAJOR} PROPERTIES
     EXPORT_NAME Core
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
-    OUTPUT_NAME wolkanlin-qt${QTVERMAJ}
     PUBLIC_HEADER "${wolkanlin_HEADERS}"
 )
 
