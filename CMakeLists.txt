@@ -36,6 +36,7 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 include(CMakeDependentOption)
 option(BUILD_SHARED_LIBS "Enable the build of shared libraries" ON)
+option(BUILD_DOCS "Enable the build of doxygen docs" OFF)
 option(BUILD_DOCS_QUIET "Tell doxygen to be quiet while building the documentation." OFF)
 option(ENABLE_MAINTAINER_FLAGS "Enables some build flags used for development" OFF)
 option(WITH_KDE "Use the original KJobs implementation of KDE Frameworks" OFF)
@@ -82,10 +83,8 @@ if (WITH_TESTS)
     add_subdirectory(tests)
 endif (WITH_TESTS)
 
-find_package(Doxygen OPTIONAL_COMPONENTS dot)
-
-if (DOXYGEN_FOUND)
-    message (STATUS "Doxygen and dot found. Documentation building available.")
+if (BUILD_DOCS)
+    find_package(Doxygen REQUIRED OPTIONAL_COMPONENTS dot)
 
     if (BUILD_DOCS_QUIET)
         set(DOXYGEN_QUIET "YES")
