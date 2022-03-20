@@ -208,4 +208,4 @@ if (BUILD_DOCS)
         OPTIONAL
     )
 
-endif (DOXYGEN_FOUND)
+endif (BUILD_DOCS)
