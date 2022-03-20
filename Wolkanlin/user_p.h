@@ -33,6 +33,9 @@ public:
 
     void onGetUserSucceeded(const QJsonDocument &json);
 
+    static QStringList jsonArrayToStringList(const QJsonArray &array);
+    static QStringList jsonArrayToStringList(const QJsonValue &value);
+
     Quota quota;
     User *q_ptr = nullptr;
     QString storageLocation;

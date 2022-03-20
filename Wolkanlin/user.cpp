@@ -204,16 +204,7 @@ User *User::fromJson(const QJsonObject &json, QObject *parent)
     d->id = id;
     d->lastLogin = QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(data.value(QStringLiteral("lastLogin")).toDouble()));
     d->backend = data.value(QStringLiteral("backend")).toString();
-
-    const QJsonArray subadmin = data.value(QStringLiteral("subadmin")).toArray();
-    d->subadmin.reserve(subadmin.size());
-    for (const QJsonValue &v : subadmin) {
-        const QString s = v.toString();
-        if (!s.isEmpty()) {
-            d->subadmin << s;
-        }
-    }
-
+    d->subadmin = UserPrivate::jsonArrayToStringList(data.value(QStringLiteral("subadmin")));
     d->quota = Quota::fromJson(data.value(QStringLiteral("quota")).toObject());
     d->email = data.value(QStringLiteral("email")).toString();
     d->displayname = data.value(QStringLiteral("displayname")).toString();
@@ -221,16 +212,7 @@ User *User::fromJson(const QJsonObject &json, QObject *parent)
     d->address = data.value(QStringLiteral("address")).toString();
     d->website = QUrl(data.value(QStringLiteral("website")).toString());
     d->twitter = data.value(QStringLiteral("twitter")).toString();
-
-    const QJsonArray groups = data.value(QStringLiteral("groups")).toArray();
-    d->groups.reserve(groups.size());
-    for (const QJsonValue &v : groups) {
-        const QString g = v.toString();
-        if (!g.isEmpty()) {
-            d->groups << g;
-        }
-    }
-
+    d->groups = UserPrivate::jsonArrayToStringList(data.value(QStringLiteral("groups")));
     d->language = data.value(QStringLiteral("language")).toString();
     d->locale = data.value(QStringLiteral("locale")).toString();
 
@@ -453,19 +435,7 @@ void UserPrivate::onGetUserSucceeded(const QJsonDocument &json)
     setId(data.value(QStringLiteral("id")).toString());
     setLastLogin(QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(data.value(QStringLiteral("lastLogin")).toDouble())));
     setBackend(data.value(QStringLiteral("backend")).toString());
-
-
-    const QJsonArray subadminArray = data.value(QStringLiteral("subadmin")).toArray();
-    QStringList subadminList;
-    subadminList.reserve(subadminArray.size());
-    for (const QJsonValue &v : subadminArray) {
-        const QString s = v.toString();
-        if (!s.isEmpty()) {
-            subadminList << s;
-        }
-    }
-    setSubadmin(subadminList);
-
+    setSubadmin(jsonArrayToStringList(data.value(QStringLiteral("subadmin"))));
     setQuota(Quota::fromJson(data.value(QStringLiteral("quota")).toObject()));
     setEmail(data.value(QStringLiteral("email")).toString());
     setDisplayname(data.value(QStringLiteral("displayname")).toString());
@@ -473,18 +443,7 @@ void UserPrivate::onGetUserSucceeded(const QJsonDocument &json)
     setAddress(data.value(QStringLiteral("address")).toString());
     setWebsite(QUrl(data.value(QStringLiteral("website")).toString()));
     setTwitter(data.value(QStringLiteral("twitter")).toString());
-
-    const QJsonArray groupsArray = data.value(QStringLiteral("groups")).toArray();
-    QStringList groupsList;
-    groupsList.reserve(groupsArray.size());
-    for (const QJsonValue &v : groupsArray) {
-        const QString g = v.toString();
-        if (!g.isEmpty()) {
-            groupsList << g;
-        }
-    }
-    setGroups(groupsList);
-
+    setGroups(jsonArrayToStringList(data.value(QStringLiteral("groups"))));
     setLanguage(data.value(QStringLiteral("language")).toString());
     setLocale(data.value(QStringLiteral("locale")).toString());
 
@@ -500,6 +459,23 @@ void UserPrivate::onGetUserSucceeded(const QJsonDocument &json)
 
     Q_Q(User);
     Q_EMIT q->finished();
+}
+
+QStringList UserPrivate::jsonArrayToStringList(const QJsonArray &array)
+{
+    QStringList list;
+    if (!array.empty()) {
+        list.reserve(array.size());
+        for (const QJsonValue &v : array) {
+            list << v.toString();
+        }
+    }
+    return list;
+}
+
+QStringList UserPrivate::jsonArrayToStringList(const QJsonValue &value)
+{
+    return jsonArrayToStringList(value.toArray());
 }
 
 QDebug operator<<(QDebug dbg, const Wolkanlin::User &user)
