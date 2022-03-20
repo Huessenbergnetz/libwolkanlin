@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_JOB_H
 #define WOLKANLIN_JOB_H
 
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 #if defined(WOLKANLIN_WITH_KDE)
 #include <KF5/KCoreAddons/KJob>
 #else

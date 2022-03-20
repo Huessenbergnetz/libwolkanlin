@@ -7,7 +7,7 @@
 #define WOLKANLIN_WJOB_H
 
 #include <QObject>
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 
 namespace Wolkanlin {
 

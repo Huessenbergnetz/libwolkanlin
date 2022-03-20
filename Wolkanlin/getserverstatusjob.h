@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_GETSERVERSTATUSJOB_H
 #define WOLKANLIN_GETSERVERSTATUSJOB_H
 
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 #include "job.h"
 #include <QObject>
 

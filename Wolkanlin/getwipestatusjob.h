@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_GETWIPESTATUSJOB_H
 #define WOLKANLIN_GETWIPESTATUSJOB_H
 
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 #include "job.h"
 #include <QObject>
 

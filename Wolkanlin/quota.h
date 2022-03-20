@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_QUOTA_H
 #define WOLKANLIN_QUOTA_H
 
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 #include <QObject>
 #include <QSharedDataPointer>
 #include <QJsonObject>

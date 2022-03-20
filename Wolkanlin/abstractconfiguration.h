@@ -7,7 +7,7 @@
 #define WOLKANLIN_ABSTRACTCONFIGURATION_H
 
 #include <QObject>
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 
 class QUrl;
 class QJsonDocument;

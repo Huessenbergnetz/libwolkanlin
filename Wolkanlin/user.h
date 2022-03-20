@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_USER_H
 #define WOLKANLIN_USER_H
 
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 #include "quota.h"
 #include <QObject>
 #include <QDateTime>

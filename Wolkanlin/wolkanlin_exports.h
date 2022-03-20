@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#ifndef WOLKANLIN_GLOBAL_H
-#define WOLKANLIN_GLOBAL_H
+#ifndef WOLKANLIN_EXPORTS_H
+#define WOLKANLIN_EXPORTS_H
 
 #include <QtCore/QtGlobal>
 
@@ -13,7 +13,7 @@
  * \brief The root namespace for libwolkanlin.
  */
 
-#if defined(wolkanlin_EXPORTS)
+#if defined(WolkanlinQt5_EXPORTS) || defined(WolkanlinQt6_EXPORTS)
 #  define WOLKANLIN_LIBRARY Q_DECL_EXPORT
 #else
 #  define WOLKANLIN_LIBRARY Q_DECL_IMPORT

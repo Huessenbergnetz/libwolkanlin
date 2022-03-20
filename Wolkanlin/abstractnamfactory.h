@@ -7,7 +7,7 @@
 #define WOLKANLIN_ABSTRACTNAMFACTORY_H
 
 #include <QObject>
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 
 class QNetworkAccessManager;
 

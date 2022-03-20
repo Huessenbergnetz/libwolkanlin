@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_SERVERSTATUS_H
 #define WOLKANLIN_SERVERSTATUS_H
 
-#include "wolkanlin_global.h"
+#include "wolkanlin_exports.h"
 #include <QObject>
 #include <memory>
 

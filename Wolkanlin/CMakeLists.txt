@@ -22,10 +22,11 @@ set(wolkanlin_SRCS
     serverstatus_p.h
     getwipestatusjob.cpp
     getwipestatusjob_p.h
+    global.cpp
 )
 
 set(wolkanlin_HEADERS
-    wolkanlin_global.h
+    wolkanlin_exports.h
     abstractconfiguration.h
     AbstractConfiguration
     abstractnamfactory.h
@@ -47,6 +48,8 @@ set(wolkanlin_HEADERS
     ServerStatus
     getwipestatusjob.h
     GetWipeStatusJob
+    global.h
+    Global
 )
 
 set(wolkanlin_PRIVATE_HEADERS
