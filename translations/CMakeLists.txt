@@ -1,30 +1,61 @@
 # SPDX-FileCopyrightText: (C) 2021 Matthias Fehring / www.huessenbergnetz.de
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-find_program(LRELEASE_CMD_PATH NAMES lrelease-qt5 lrelease REQUIRED)
-set(LRELEASE_CMD ${LRELEASE_CMD_PATH})
+include(CMakeParseArguments)
 
-message(STATUS "Found lrelease at ${LRELEASE_CMD}")
+set(TS_FILES libwolkanlin.ts
+             libwolkanlin_de.ts)
 
-set(LANGS de)
+function(wolkanlin_add_trans_func _qm_files)
+    set(options)
+    set(oneValueArgs)
+    set(multiValueArgs OPTIONS)
 
-list(APPEND QM_FILES ${CMAKE_CURRENT_BINARY_DIR}/libwolkanlin.qm)
-list(APPEND TS_FILES libwolkanlin.ts)
+    cmake_parse_arguments(_LRELEASE "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    set(_lrelease_files ${_LRELEASE_UNPARSED_ARGUMENTS})
 
-set(LRELEASE_OPTIONS "-idbased" "-silent")
+    foreach(_current_FILE ${_lrelease_files})
+        get_filename_component(_abs_FILE ${_current_FILE} ABSOLUTE)
+        get_filename_component(qm ${_abs_FILE} NAME)
+        # everything before the last dot has to be considered the file name (including other dots)
+        string(REGEX REPLACE "\\.[^.]*$" "" FILE_NAME ${qm})
+        get_source_file_property(output_location ${_abs_FILE} OUTPUT_LOCATION)
+        if(output_location)
+            file(MAKE_DIRECTORY "${output_location}")
+            set(qm "${output_location}/${FILE_NAME}.qm")
+        else()
+            set(qm "${CMAKE_CURRENT_BINARY_DIR}/${FILE_NAME}.qm")
+        endif()
 
-foreach(l ${LANGS})
-    set(TRANS_ARGS ${TRANS_ARGS} COMMAND ${LRELEASE_CMD} ${LRELEASE_OPTIONS} libwolkanlin_${l}.ts -qm ${CMAKE_CURRENT_BINARY_DIR}/libwolkanlin_${l}.qm)
-    list(APPEND QM_FILES ${CMAKE_CURRENT_BINARY_DIR}/libwolkanlin_${l}.qm)
-    list(APPEND TS_FILES libwolkanlin_${l}.ts)
-endforeach(l ${LANGS})
+        add_custom_command(OUTPUT ${qm}
+                    COMMAND ${Qt5_LRELEASE_EXECUTABLE}
+                    ARGS ${_LRELEASE_OPTIONS} ${_abs_FILE} -qm ${qm}
+                    DEPENDS ${_abs_FILE} VERBATIM)
+        list(APPEND ${_qm_files} ${qm})
+    endforeach()
+    set(${_qm_files} ${${_qm_files}} PARENT_SCOPE)
+endfunction()
 
-add_custom_target(translations ALL ${LRELEASE_CMD} ${LRELEASE_OPTIONS} libwolkanlin.ts -qm ${CMAKE_CURRENT_BINARY_DIR}/libwolkanlin.qm
-    ${TRANS_ARGS}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "Compiling translation files"
-    SOURCES ${TS_FILES}
+function(wolkanlin_add_translation _qm_files)
+    if (QT_VERSION VERSION_LESS "5.11.0")
+        wolkanlin_add_trans_func("${_qm_files}" ${ARGN})
+    else()
+        if (QT_DEFAULT_MAJOR_VERSION EQUAL 6)
+            qt6_add_translation("${_qm_files}" ${ARGN})
+        else()
+            qt5_add_translation("${_qm_files}" ${ARGN})
+        endif()
+    endif()
+    set("${_qm_files}" "${${_qm_files}}" PARENT_SCOPE)
+endfunction()
+
+wolkanlin_add_translation(QM_FILES ${TS_FILES} OPTIONS -idbased)
+add_custom_target(translations ALL
+                  DEPENDS ${QM_FILES}
+                  COMMENT "Compiles translation messages"
+                  SOURCES ${TS_FILES})
+
+install(FILES ${QM_FILES}
+        DESTINATION ${LIBWOLKANLIN_I18NDIR}
+        COMPONENT runtime
 )
-
-install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_LOCALEDIR})
-

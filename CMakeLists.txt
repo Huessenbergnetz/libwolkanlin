@@ -9,8 +9,8 @@ project(libwolkanlin
         DESCRIPTION "Qt based library to access some core Nextcloud APIs."
         LANGUAGES CXX)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Network REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} 5.6.0 REQUIRED COMPONENTS Core Network)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Network LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} 5.6.0 REQUIRED COMPONENTS Core LinguistTools Network)
 
 # Include our cmake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
@@ -43,6 +43,8 @@ option(ENABLE_MAINTAINER_FLAGS "Enables some build flags used for development" O
 option(WITH_KDE "Use the original KJobs implementation of KDE Frameworks" OFF)
 option(WITH_TESTS "Build the tests" OFF)
 cmake_dependent_option(WITH_API_TESTS "Build the API tests that need a network connection and a remote server." OFF "WITH_TESTS" OFF)
+
+set(LIBWOLKANLIN_I18NDIR "${CMAKE_INSTALL_DATADIR}/libWolkanlinQt${QT_VERSION_MAJOR}/translations" CACHE PATH "Directory to install translations")
 
 if (WITH_TESTS)
     enable_testing()
