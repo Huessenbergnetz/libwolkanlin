@@ -9,7 +9,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonParseError>
-#include "serverstatus.h"
+#include <Wolkanlin/ServerStatus>
 
 using namespace Wolkanlin;
 

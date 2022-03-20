@@ -6,7 +6,7 @@
 #ifndef TESTNAMFACTORY_H
 #define TESTNAMFACTORY_H
 
-#include "abstractnamfactory.h"
+#include <Wolkanlin/AbstractNamFactory>
 
 class TestNamFactory : public Wolkanlin::AbstractNamFactory
 {

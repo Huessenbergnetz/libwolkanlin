@@ -12,7 +12,7 @@ project(libwolkanlin
 find_package(Qt5 5.6.0 REQUIRED COMPONENTS Core Network)
 
 # Include our cmake modules
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 # Auto generate moc files
 set(CMAKE_AUTOMOC ON)
@@ -52,12 +52,12 @@ endif (WITH_KDE)
 
 set(QTVERMAJ ${Qt5_VERSION_MAJOR} CACHE INTERNAL "The currently used Qt major version.")
 
-configure_file(${CMAKE_MODULE_PATH}/wolkanlin-config.cmake.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QTVERMAJ}Config.cmake
     @ONLY
 )
 
-configure_file(${CMAKE_MODULE_PATH}/wolkanlin-config-version.cmake.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config-version.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QTVERMAJ}ConfigVersion.cmake
     @ONLY
 )

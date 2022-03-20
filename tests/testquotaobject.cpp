@@ -6,7 +6,7 @@
 #include <QTest>
 #include <QObject>
 #include <QDataStream>
-#include "quota.h"
+#include <Wolkanlin/Quota>
 
 using namespace Wolkanlin;
 

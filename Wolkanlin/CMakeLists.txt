@@ -132,8 +132,10 @@ if(ENABLE_MAINTAINER_FLAGS)
     )
 endif(ENABLE_MAINTAINER_FLAGS)
 
+get_property(_current_parent_dir DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY PARENT_DIRECTORY)
+
 target_include_directories(wolkanlin PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${_current_parent_dir}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/wolkanlin-qt${QTVERMAJ}>
 )
 

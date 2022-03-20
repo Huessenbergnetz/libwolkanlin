@@ -5,7 +5,7 @@
 
 #include "testconfig.h"
 #include "testnamfactory.h"
-#include "job.h"
+#include <Wolkanlin/job.h>
 #include <QObject>
 #include <QTest>
 #include <memory>

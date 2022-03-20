@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_TESTCONFIG_H
 #define WOLKANLIN_TESTCONFIG_H
 
-#include "abstractconfiguration.h"
+#include <Wolkanlin/AbstractConfiguration>
 
 class TestConfig : public Wolkanlin::AbstractConfiguration
 {

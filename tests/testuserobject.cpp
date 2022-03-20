@@ -9,7 +9,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonParseError>
-#include "user.h"
+#include <Wolkanlin/User>
 
 using namespace Wolkanlin;
 
