@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2021 Matthias Fehring / www.huessenbergnetz.de
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
 cmake_policy(SET CMP0048 NEW)
 
 project(libwolkanlin
@@ -81,10 +81,6 @@ add_subdirectory(translations)
 if (WITH_TESTS)
     add_subdirectory(tests)
 endif (WITH_TESTS)
-
-if (CMAKE_VERSION VERSION_LESS "3.12.3")
-    cmake_policy(SET CMP0057 NEW)
-endif (CMAKE_VERSION VERSION_LESS "3.12.3")
 
 find_package(Doxygen OPTIONAL_COMPONENTS dot)
 
