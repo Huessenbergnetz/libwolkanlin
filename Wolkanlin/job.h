@@ -167,30 +167,6 @@ private:
     Q_DISABLE_COPY(Job)
 };
 
-/*!
- * \brief Sets a pointer to a global default \a configuration.
- * \sa Wolkanlin::defaultConfiguration()
- */
-WOLKANLIN_LIBRARY void setDefaultConfiguration(AbstractConfiguration *configuration);
-
-/*!
- * \brief Returns a pointer to a global default configuration.
- * \sa Wolkanlin::setDefaultConfiguration()
- */
-WOLKANLIN_LIBRARY AbstractConfiguration* defaultConfiguration();
-
-/*!
- * \brief Sets a pointer to a global network access manager \a factory.
- * \sa Wolkanlin::networkAccessManagerFactory()
- */
-WOLKANLIN_LIBRARY void setNetworkAccessManagerFactory(AbstractNamFactory *factory);
-
-/*!
- * \brief Returns a pointer to a global network access manager factory.
- * \sa Wolkanlin::setNetworkAccessManagerFactory()
- */
-WOLKANLIN_LIBRARY AbstractNamFactory* networkAccessManagerFactory();
-
 }
 
 #endif // WOLKANLIN_JOB_H

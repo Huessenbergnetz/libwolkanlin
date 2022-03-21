@@ -8,15 +8,10 @@
 
 #include <QtCore/QtGlobal>
 
-/*!
- * \namespace Wolkanlin
- * \brief The root namespace for libwolkanlin.
- */
-
 #if defined(WolkanlinQt5_EXPORTS) || defined(WolkanlinQt6_EXPORTS)
 #  define WOLKANLIN_LIBRARY Q_DECL_EXPORT
 #else
 #  define WOLKANLIN_LIBRARY Q_DECL_IMPORT
 #endif
 
-#endif // WOLKANLIN_GLOBAL_H
+#endif // WOLKANLIN_EXPORTS_H
