@@ -55,24 +55,24 @@ if (WITH_KDE)
 endif (WITH_KDE)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VERSION_MAJOR}Config.cmake
     @ONLY
 )
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config-version.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VERSION_MAJOR}ConfigVersion.cmake
     @ONLY
 )
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}Config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt{QT_VERSION_MAJOR}ConfigVersion.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt{QT_VERSION_MAJOR}/
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VERSION_MAJOR}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VERSION_MAJOR}ConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt${QT_VERSION_MAJOR}/
     COMPONENT devel
 )
 
 install(EXPORT WolkanlinTargets
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt{QT_VERSION_MAJOR}/
-    FILE WolkanlinQt{QT_VERSION_MAJOR}Targets.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt${QT_VERSION_MAJOR}/
+    FILE WolkanlinQt${QT_VERSION_MAJOR}Targets.cmake
     NAMESPACE Wolkanlin::
     COMPONENT devel
 )
