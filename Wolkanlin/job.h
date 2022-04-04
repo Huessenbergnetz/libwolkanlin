@@ -113,7 +113,7 @@ public:
      *
      * \sa succeeded()
      */
-    QJsonDocument result() const;
+    QJsonDocument replyData() const;
 
 protected:
     const std::unique_ptr<JobPrivate> wl_ptr;

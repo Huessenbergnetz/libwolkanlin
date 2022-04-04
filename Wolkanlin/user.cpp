@@ -256,7 +256,7 @@ bool User::get(const QString &id, bool async, AbstractConfiguration *config)
         return true;
     } else {
         if (Q_LIKELY(getUserJob->exec())) {
-            d->onGetUserSucceeded(getUserJob->result());
+            d->onGetUserSucceeded(getUserJob->replyData());
             getUserJob->deleteLater();
             return true;
         } else {

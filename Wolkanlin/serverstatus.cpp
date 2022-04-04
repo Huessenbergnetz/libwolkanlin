@@ -146,7 +146,7 @@ bool ServerStatus::get(bool async, AbstractConfiguration *config)
         return true;
     } else {
         if (Q_LIKELY(job->exec())) {
-            d->onGetServerStatusSucceeded(job->result());
+            d->onGetServerStatusSucceeded(job->replyData());
             job->deleteLater();
             return true;
         } else {

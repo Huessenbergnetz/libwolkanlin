@@ -539,7 +539,7 @@ QString Job::errorString() const
     }
 }
 
-QJsonDocument Job::result() const
+QJsonDocument Job::replyData() const
 {
     Q_D(const Job);
     return d->jsonResult;
