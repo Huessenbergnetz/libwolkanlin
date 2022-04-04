@@ -89,3 +89,8 @@ void Wolkanlin::setNetworkAccessManagerFactory(AbstractNamFactory *factory)
     qCDebug(wlCore) << "Setting networkAccessManagerFactory to" << factory;
     defs->setNamFactory(factory);
 }
+
+QVersionNumber Wolkanlin::version()
+{
+    return QVersionNumber::fromString(QStringLiteral(WOLKANLIN_VERSION));
+}

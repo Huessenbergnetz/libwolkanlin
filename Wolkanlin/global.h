@@ -7,6 +7,7 @@
 #define WOLKANLIN_GLOBAL_H
 
 #include "wolkanlin_exports.h"
+#include <QVersionNumber>
 
 /*!
  * \brief The root namespace for libwolkanlin.
@@ -39,6 +40,11 @@ WOLKANLIN_LIBRARY void setNetworkAccessManagerFactory(AbstractNamFactory *factor
  * \sa Wolkanlin::setNetworkAccessManagerFactory()
  */
 WOLKANLIN_LIBRARY AbstractNamFactory* networkAccessManagerFactory();
+
+/*!
+ * \brief Returns the version number of the currently used libwolkanlin.
+ */
+WOLKANLIN_LIBRARY QVersionNumber version();
 
 }
 
