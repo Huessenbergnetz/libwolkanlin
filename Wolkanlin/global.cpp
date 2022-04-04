@@ -6,6 +6,8 @@
 #include "global.h"
 #include "logging.h"
 #include <QReadWriteLock>
+#include <QCoreApplication>
+#include <QTranslator>
 
 #if defined(QT_DEBUG)
 Q_LOGGING_CATEGORY(wlCore, "wolkanlin.core")
@@ -93,4 +95,20 @@ void Wolkanlin::setNetworkAccessManagerFactory(AbstractNamFactory *factory)
 QVersionNumber Wolkanlin::version()
 {
     return QVersionNumber::fromString(QStringLiteral(WOLKANLIN_VERSION));
+}
+
+bool Wolkanlin::loadTranslations(const QLocale &locale)
+{
+    auto t = new QTranslator(QCoreApplication::instance());
+    if (t->load(locale, QStringLiteral("libwolkanlin"), QStringLiteral("_"), QStringLiteral(WOLKANLIN_I18NDIR))) {
+        if (QCoreApplication::installTranslator(t)) {
+            return true;
+        } else {
+            qCWarning(wlCore) << "Failed to install translations for libwolkanlin for locale" << locale;
+            return false;
+        }
+    } else {
+        qCWarning(wlCore) << "Failed to load translations for libwolkanlin for locale" << locale;
+        return false;
+    }
 }

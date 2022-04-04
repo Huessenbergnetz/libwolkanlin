@@ -95,6 +95,8 @@ target_link_libraries(WolkanlinQt${QT_VERSION_MAJOR}
         Qt${QT_VERSION_MAJOR}::Network
 )
 
+GNUInstallDirs_get_absolute_install_dir(LIBWOLKANLIN_ABS_I18NDIR LIBWOLKANLIN_I18NDIR)
+
 target_compile_definitions(WolkanlinQt${QT_VERSION_MAJOR}
     PRIVATE
         QT_NO_KEYWORDS
@@ -108,6 +110,7 @@ target_compile_definitions(WolkanlinQt${QT_VERSION_MAJOR}
         QT_USE_FAST_OPERATOR_PLUS
         QT_DISABLE_DEPRECATED_BEFORE=0x050500
         WOLKANLIN_VERSION="${PROJECT_VERSION}"
+        WOLKANLIN_I18NDIR="${LIBWOLKANLIN_ABS_I18NDIR}"
 )
 
 if (WITH_KDE)

@@ -8,6 +8,7 @@
 
 #include "wolkanlin_exports.h"
 #include <QVersionNumber>
+#include <QLocale>
 
 /*!
  * \brief The root namespace for libwolkanlin.
@@ -45,6 +46,13 @@ WOLKANLIN_LIBRARY AbstractNamFactory* networkAccessManagerFactory();
  * \brief Returns the version number of the currently used libwolkanlin.
  */
 WOLKANLIN_LIBRARY QVersionNumber version();
+
+/*!
+ * \brief Load and install the translations for libwolkanlin for the given \a locale.
+ *
+ * Returns \c true on success, otherwise \c false.
+ */
+WOLKANLIN_LIBRARY bool loadTranslations(const QLocale &locale = QLocale());
 
 }
 
