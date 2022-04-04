@@ -1,0 +1,20 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 100,
+            "message": "OK",
+            "totalitems": "",
+            "itemsperpage": ""
+        },
+        "data": {
+            "users": [
+                "1st_user",
+                "2nd_user",
+                "3rd_user",
+                "..._user"
+            ]
+        }
+    }
+}
+

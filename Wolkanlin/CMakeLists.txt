@@ -8,6 +8,8 @@ set(wolkanlin_SRCS
     job_p.h
     getuserjob.cpp
     getuserjob_p.h
+    getuserlistjob.cpp
+    getuserlistjob_p.h
     quota.cpp
     quota_p.h
     user.cpp
@@ -34,6 +36,8 @@ set(wolkanlin_HEADERS
     job.h
     getuserjob.h
     GetUserJob
+    getuserlistjob.h
+    GetUserListJob
     quota.h
     Quota
     user.h
