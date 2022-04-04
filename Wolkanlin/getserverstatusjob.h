@@ -29,7 +29,7 @@ class GetServerStatusJobPrivate;
  * <H3 id="getserverstatusjob-json-example">JSON representation exmaple</H3>
  * This is the JSON object like it is returned by the Nextcloud API. On a successful
  * request it will be emitted in the Job::succeeded() signal or can be get via the
- * Job::result() function.
+ * Job::replyData() function.
  * \include server-status-example.json
  *
  * <H3 id="geserverstatusjob-usage-examples">Usage examples</H3>

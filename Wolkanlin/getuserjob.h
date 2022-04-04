@@ -36,7 +36,7 @@ class GetUserJobPrivate;
  *
  * <H3 id="getuserjob-json-example">JSON representation example</H3>
  * This is the JSON object like it is returned by the Nextcloud API. On a successful request
- * it will be emitted in the Job::succeeded() signal or can be get via the Job::result() function.
+ * it will be emitted in the Job::succeeded() signal or can be get via the Job::replyData() function.
  * See the <A HREF="https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/ocs-api-overview.html#user-metadata" rel="external noopener">OCS API overview</A>
  * for a maybe more recent description of this data.
  * \include userdata-example.json
