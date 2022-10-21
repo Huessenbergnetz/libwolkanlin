@@ -1,6 +1,7 @@
 project(wolkanlin_tests)
 
-find_package(Qt5Test 5.6.0 REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Test REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} 5.6.0 REQUIRED COMPONENTS Test)
 
 set(TESTS_SERVER_URL "" CACHE STRING "URL to a server user for API tests. Can also be set via WOLKANLIN_TESTS_SERVER_URL environment variable.")
 set(TESTS_ADMIN_USERNAME "" CACHE STRING "User name of an admin account used for API tests. Can also be set via WOLKANLIN_TESTS_ADMIN_USERNAME environment variable.")
