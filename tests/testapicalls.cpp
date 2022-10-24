@@ -3,15 +3,16 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#include <QTest>
 #include "testconfig.h"
-#include "getserverstatusjob.h"
-#include "serverstatus.h"
-#include "getapppasswordjob.h"
-#include "deleteapppasswordjob.h"
-#include "getuserjob.h"
-#include "user.h"
-#include "getwipestatusjob.h"
+#include <Wolkanlin/Global>
+#include <Wolkanlin/GetServerStatusJob>
+#include <Wolkanlin/ServerStatus>
+#include <Wolkanlin/GetAppPasswordJob>
+#include <Wolkanlin/DeleteAppPasswordJob>
+#include <Wolkanlin/GetUserJob>
+#include <Wolkanlin/User>
+#include <Wolkanlin/GetWipeStatusJob>
+#include <QTest>
 
 using namespace Wolkanlin;
 
@@ -72,7 +73,7 @@ void ApiCallsTest::testGetServerStatusJob()
 {
     auto job = new GetServerStatusJob(this);
     QVERIFY(job->exec());
-    auto s1 = ServerStatus::fromJson(job->result());
+    auto s1 = ServerStatus::fromJson(job->replyData());
     QVERIFY(!s1->isEmpty());
 
     auto s2 = new ServerStatus(this);
@@ -84,7 +85,7 @@ void ApiCallsTest::testGetAppPassword()
 {
     auto job = new GetAppPasswordJob(this);
     QVERIFY(job->exec());
-    QVERIFY(m_userConfig->setApplicationPassword(job->result()));
+    QVERIFY(m_userConfig->setApplicationPassword(job->replyData()));
 }
 
 void ApiCallsTest::testGetAppPasswordInvalidUser()
@@ -138,7 +139,7 @@ void ApiCallsTest::testGetWipeStatusJobInvalidPassword()
     job->setConfiguration(conf);
     QVERIFY(job->exec());
     QCOMPARE(job->error(), 0);
-    QVERIFY(job->result().isEmpty());
+    QVERIFY(job->replyData().isEmpty());
 }
 
 void ApiCallsTest::testGetWipeStatusJobNoWipe()
@@ -146,7 +147,7 @@ void ApiCallsTest::testGetWipeStatusJobNoWipe()
     auto job = new GetWipeStatusJob(this);
     QVERIFY(job->exec());
     QCOMPARE(job->error(), 0);
-    QVERIFY(job->result().isEmpty());
+    QVERIFY(job->replyData().isEmpty());
 }
 
 void ApiCallsTest::testGetUserJob()
@@ -154,7 +155,7 @@ void ApiCallsTest::testGetUserJob()
     auto getUserJob = new GetUserJob(this);
     getUserJob->setId(QStringLiteral(WOLKANLIN_TESTS_USER_USERNAME));
     QVERIFY(getUserJob->exec());
-    auto u1 = User::fromJson(getUserJob->result());
+    auto u1 = User::fromJson(getUserJob->replyData());
     QCOMPARE(u1->id(), QStringLiteral(WOLKANLIN_TESTS_USER_USERNAME));
 
     auto u2 = new User(this);
