@@ -26,10 +26,9 @@ wolkanlin_unit_test(testserverstatusobject)
 wolkanlin_unit_test(testjobs)
 
 if(WITH_API_TESTS)
-    find_package(SchauerQt5 REQUIRED)
     add_executable(testapicalls_exec testapicalls.cpp testconfig.h testconfig.cpp)
 #    add_test(NAME testapicalls COMMAND testapicalls_exec)
-    target_link_libraries(testapicalls_exec Qt${QT_VERSION_MAJOR}::Test SchauerQt${QT_VERSION_MAJOR} WolkanlinQt${QT_VERSION_MAJOR})
+    target_link_libraries(testapicalls_exec Qt${QT_VERSION_MAJOR}::Test WolkanlinQt${QT_VERSION_MAJOR})
     target_compile_definitions(testapicalls_exec
         PRIVATE
             WOLKANLIN_TESTS_SERVER_URL="${TESTS_SERVER_URL}"
