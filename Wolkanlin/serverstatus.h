@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_SERVERSTATUS_H
 #define WOLKANLIN_SERVERSTATUS_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include <QObject>
 #include <memory>
 
@@ -36,7 +36,7 @@ class ServerStatusPrivate;
  *
  * \headerfile "" <Wolkanlin/ServerStatus>
  */
-class WOLKANLIN_LIBRARY ServerStatus : public QObject
+class WOLKANLIN_EXPORT ServerStatus : public QObject
 {
     Q_OBJECT
     /*!
@@ -332,7 +332,7 @@ private:
  * \relates Wolkanlin::ServerStatus
  * \brief Reads a %ServerStatus from \a stream and stores it to \a serverStatus.
  */
-WOLKANLIN_LIBRARY QDataStream &operator>>(QDataStream &stream, ServerStatus &serverStatus);
+WOLKANLIN_EXPORT QDataStream &operator>>(QDataStream &stream, ServerStatus &serverStatus);
 
 }
 
@@ -340,12 +340,12 @@ WOLKANLIN_LIBRARY QDataStream &operator>>(QDataStream &stream, ServerStatus &ser
  * \relates Wolkanlin::ServerStatus
  * \brief Writes the \a serverStatus to the \a dbg stream and returns the stream.
  */
-WOLKANLIN_LIBRARY QDebug operator<<(QDebug dbg, const Wolkanlin::ServerStatus &serverStatus);
+WOLKANLIN_EXPORT QDebug operator<<(QDebug dbg, const Wolkanlin::ServerStatus &serverStatus);
 
 /*!
  * \relates Wolkanlin::ServerStatus
  * \brief Writes \a serverStatus to the \a stream.
  */
-WOLKANLIN_LIBRARY QDataStream &operator<<(QDataStream &stream, const Wolkanlin::ServerStatus &serverStatus);
+WOLKANLIN_EXPORT QDataStream &operator<<(QDataStream &stream, const Wolkanlin::ServerStatus &serverStatus);
 
 #endif // WOLKANLIN_SERVERSTATUS_H

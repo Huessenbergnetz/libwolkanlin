@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_GETAPPPASSWORDJOB_H
 #define WOLKANLIN_GETAPPPASSWORDJOB_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include "job.h"
 #include <QObject>
 
@@ -45,7 +45,7 @@ class GetAppPasswordJobPrivate;
  * \par API docs
  * https://docs.nextcloud.com/server/latest/developer_manual/client_apis/LoginFlow/index.html#converting-to-app-passwords
  */
-class WOLKANLIN_LIBRARY GetAppPasswordJob : public Job
+class WOLKANLIN_EXPORT GetAppPasswordJob : public Job
 {
     Q_OBJECT
 public:

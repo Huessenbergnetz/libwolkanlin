@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_USER_H
 #define WOLKANLIN_USER_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include "quota.h"
 #include <QObject>
 #include <QDateTime>
@@ -42,7 +42,7 @@ class UserPrivate;
  *
  * \headerfile "" <Wolkanlin/User>
  */
-class WOLKANLIN_LIBRARY User : public QObject
+class WOLKANLIN_EXPORT User : public QObject
 {
     Q_OBJECT
     /*!
@@ -527,7 +527,7 @@ private:
  * \relates Wolkanlin::User
  * \brief Reads a %User from \a stream and stores it to \a user.
  */
-WOLKANLIN_LIBRARY QDataStream &operator>>(QDataStream &stream, User &user);
+WOLKANLIN_EXPORT QDataStream &operator>>(QDataStream &stream, User &user);
 
 }
 
@@ -535,13 +535,13 @@ WOLKANLIN_LIBRARY QDataStream &operator>>(QDataStream &stream, User &user);
  * \relates Wolkanlin::User
  * \brief Writes the \a user to the \a dbg stream and returns the stream.
  */
-WOLKANLIN_LIBRARY QDebug operator<<(QDebug dbg, const Wolkanlin::User &user);
+WOLKANLIN_EXPORT QDebug operator<<(QDebug dbg, const Wolkanlin::User &user);
 
 /*!
  * \relates Wolkanlin::User
  * \brief Writes \a user to the \a stream.
  */
-WOLKANLIN_LIBRARY QDataStream &operator<<(QDataStream &stream, const Wolkanlin::User &user);
+WOLKANLIN_EXPORT QDataStream &operator<<(QDataStream &stream, const Wolkanlin::User &user);
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Wolkanlin::User::Capabilities)
 

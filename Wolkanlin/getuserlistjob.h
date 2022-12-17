@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_GETUSERLISTJOB_H
 #define WOLKANLIN_GETUSERLISTJOB_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include "job.h"
 #include <QObject>
 
@@ -46,7 +46,7 @@ class GetUserListJobPrivate;
  *
  * \headerfile "" <Wolkanlin/GetUserListJob>
  */
-class WOLKANLIN_LIBRARY GetUserListJob : public Job
+class WOLKANLIN_EXPORT GetUserListJob : public Job
 {
     Q_OBJECT
 public:

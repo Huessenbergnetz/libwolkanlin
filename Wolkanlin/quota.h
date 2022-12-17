@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_QUOTA_H
 #define WOLKANLIN_QUOTA_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include <QObject>
 #include <QSharedDataPointer>
 #include <QJsonObject>
@@ -20,7 +20,7 @@ class QuotaPrivate;
  *
  * \headerfile "" <Wolkanlin/Quota>
  */
-class WOLKANLIN_LIBRARY Quota
+class WOLKANLIN_EXPORT Quota
 {
     Q_GADGET
     /*!
@@ -192,7 +192,7 @@ private:
  * \relates Wolkanlin::Quota
  * \brief Reads a %Quota vom \a stream and stores it to \a q.
  */
-WOLKANLIN_LIBRARY QDataStream &operator>>(QDataStream &stream, Quota &q);
+WOLKANLIN_EXPORT QDataStream &operator>>(QDataStream &stream, Quota &q);
 
 }
 
@@ -202,12 +202,12 @@ Q_DECLARE_METATYPE(Wolkanlin::Quota)
  * \relates Wolkanlin::Quota
  * \brief Writes the \a quota to the \a dbg stream and returns the stream.
  */
-WOLKANLIN_LIBRARY QDebug operator<<(QDebug dbg, const Wolkanlin::Quota &quota);
+WOLKANLIN_EXPORT QDebug operator<<(QDebug dbg, const Wolkanlin::Quota &quota);
 
 /*!
  * \relates Wolkanlin::Quota
  * \brief Writes %Quota \a q to the \a stream.
  */
-WOLKANLIN_LIBRARY QDataStream &operator<<(QDataStream &stream, const Wolkanlin::Quota &q);
+WOLKANLIN_EXPORT QDataStream &operator<<(QDataStream &stream, const Wolkanlin::Quota &q);
 
 #endif // WOLKANLIN_QUOTA_H

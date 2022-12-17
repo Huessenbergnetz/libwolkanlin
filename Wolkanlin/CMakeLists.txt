@@ -28,7 +28,7 @@ set(wolkanlin_SRCS
 )
 
 set(wolkanlin_HEADERS
-    wolkanlin_exports.h
+    ${CMAKE_CURRENT_BINARY_DIR}/wolkanlin_export.h
     abstractconfiguration.h
     AbstractConfiguration
     abstractnamfactory.h
@@ -72,6 +72,8 @@ add_library(WolkanlinQt${QT_VERSION_MAJOR}
 )
 
 add_library(WolkanlinQt${QT_VERSION_MAJOR}::Core ALIAS WolkanlinQt${QT_VERSION_MAJOR})
+
+generate_export_header(WolkanlinQt${QT_VERSION_MAJOR} BASE_NAME wolkanlin)
 
 if(CMAKE_VERSION GREATER_EQUAL "3.16.0")
     target_precompile_headers(WolkanlinQt${QT_VERSION_MAJOR}

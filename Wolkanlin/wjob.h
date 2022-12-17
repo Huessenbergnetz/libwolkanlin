@@ -7,7 +7,7 @@
 #define WOLKANLIN_WJOB_H
 
 #include <QObject>
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 
 namespace Wolkanlin {
 
@@ -18,9 +18,9 @@ class WJobPrivate;
  *
  * This is a reimplementation of <A HREF="https://api.kde.org/frameworks/kcoreaddons/html/classKJob.html">KJob from KDE Frameworks’ KCoreAddons</A>,
  * it is meant for platforms and systems where KJob is not available. If KCoreAddons are available, you should build
- * libwolkanlin with `cmake -DWITH_KDE` to use the original KJob implementation.
+ * libwolkanlin with `cmake -DWITH_KDE:BOOL=ON` to use the original KJob implementation.
  */
-class WOLKANLIN_LIBRARY WJob : public QObject
+class WOLKANLIN_EXPORT WJob : public QObject
 {
     Q_OBJECT
     /*!

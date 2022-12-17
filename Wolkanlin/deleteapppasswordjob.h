@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_DELETEAPPPASSWORD_H
 #define WOLKANLIN_DELETEAPPPASSWORD_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include "job.h"
 #include <QObject>
 
@@ -36,7 +36,7 @@ class DeleteAppPasswordJobPrivate;
  *
  * \headerfile "" <Wolkanlin/DeleteAppPasswordJob>
  */
-class DeleteAppPasswordJob : public Job
+class WOLKANLIN_EXPORT DeleteAppPasswordJob : public Job
 {
     Q_OBJECT
 public:

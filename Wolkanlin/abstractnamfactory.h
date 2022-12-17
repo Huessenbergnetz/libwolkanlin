@@ -7,13 +7,13 @@
 #define WOLKANLIN_ABSTRACTNAMFACTORY_H
 
 #include <QObject>
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 
 class QNetworkAccessManager;
 
 namespace Wolkanlin {
 
-class WOLKANLIN_LIBRARY AbstractNamFactory
+class WOLKANLIN_EXPORT AbstractNamFactory
 {
 public:
     virtual ~AbstractNamFactory();

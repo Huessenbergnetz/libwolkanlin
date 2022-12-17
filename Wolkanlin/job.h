@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_JOB_H
 #define WOLKANLIN_JOB_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #if defined(WOLKANLIN_WITH_KDE)
 #include <KF5/KCoreAddons/KJob>
 #else
@@ -58,7 +58,7 @@ enum {
  * by itself. It provides basic properties and functions used by all classes that perform
  * API requests.
  */
-class WOLKANLIN_LIBRARY Job : public WJob
+class WOLKANLIN_EXPORT Job : public WJob
 {
     Q_OBJECT
     /*!

@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_GETWIPESTATUSJOB_H
 #define WOLKANLIN_GETWIPESTATUSJOB_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include "job.h"
 #include <QObject>
 
@@ -39,7 +39,7 @@ class GetWipeStatusJobPrivate;
  *
  * \headerfile "" <Wolkanlin/GetWipeStatusJob>
  */
-class WOLKANLIN_LIBRARY GetWipeStatusJob : public Job
+class WOLKANLIN_EXPORT GetWipeStatusJob : public Job
 {
     Q_OBJECT
     /*!

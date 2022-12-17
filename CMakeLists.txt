@@ -17,6 +17,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 # Auto generate moc files
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
 
 # As moc files are generated in the binary dir, tell CMake
 # to always look for includes there:
@@ -45,6 +46,10 @@ option(WITH_TESTS "Build the tests" OFF)
 cmake_dependent_option(WITH_API_TESTS "Build the API tests that need a network connection and a remote server." OFF "WITH_TESTS" OFF)
 
 set(LIBWOLKANLIN_I18NDIR "${CMAKE_INSTALL_DATADIR}/libWolkanlinQt${QT_VERSION_MAJOR}/translations" CACHE PATH "Directory to install translations")
+
+include(GenerateExportHeader)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 if (WITH_TESTS)
     enable_testing()

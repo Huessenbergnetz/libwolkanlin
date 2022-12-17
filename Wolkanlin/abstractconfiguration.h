@@ -7,7 +7,7 @@
 #define WOLKANLIN_ABSTRACTCONFIGURATION_H
 
 #include <QObject>
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 
 class QUrl;
 class QJsonDocument;
@@ -30,7 +30,7 @@ namespace Wolkanlin {
  *
  * \headerfile "" <Wolkanlin/AbstractConfiguration>
  */
-class WOLKANLIN_LIBRARY AbstractConfiguration : public QObject
+class WOLKANLIN_EXPORT AbstractConfiguration : public QObject
 {
     Q_OBJECT
 public:

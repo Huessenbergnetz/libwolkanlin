@@ -6,7 +6,7 @@
 #ifndef WOLKANLIN_GETSERVERSTATUSJOB_H
 #define WOLKANLIN_GETSERVERSTATUSJOB_H
 
-#include "wolkanlin_exports.h"
+#include "wolkanlin_export.h"
 #include "job.h"
 #include <QObject>
 
@@ -42,7 +42,7 @@ class GetServerStatusJobPrivate;
  *
  * \headerfile "" <Wolkanlin/GetServerStatusJob>
  */
-class WOLKANLIN_LIBRARY GetServerStatusJob : public Job
+class WOLKANLIN_EXPORT GetServerStatusJob : public Job
 {
     Q_OBJECT
 public:
