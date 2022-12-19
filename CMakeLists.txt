@@ -65,9 +65,9 @@ write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VER
     COMPATIBILITY AnyNewerVersion
 )
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config.cmake.in
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/wolkanlin-config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VERSION_MAJOR}Config.cmake
-    @ONLY
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/WolkanlinQt${QT_VERSION_MAJOR}
 )
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/WolkanlinQt${QT_VERSION_MAJOR}Config.cmake
