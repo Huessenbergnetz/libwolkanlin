@@ -3,7 +3,6 @@
 
 set(wolkanlin_SRCS
     abstractconfiguration.cpp
-    abstractnamfactory.cpp
     job.cpp
     job_p.h
     getuserjob.cpp
@@ -31,8 +30,6 @@ set(wolkanlin_HEADERS
     ${CMAKE_CURRENT_BINARY_DIR}/wolkanlin_export.h
     abstractconfiguration.h
     AbstractConfiguration
-    abstractnamfactory.h
-    AbstractNamFactory
     job.h
     getuserjob.h
     GetUserJob

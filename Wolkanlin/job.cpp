@@ -6,7 +6,6 @@
 #include "global.h"
 #include "job_p.h"
 #include "logging.h"
-#include "abstractnamfactory.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -319,10 +318,8 @@ void Job::sendRequest()
     }
 
     if (!d->nam) {
-        auto namf = Wolkanlin::networkAccessManagerFactory();
-        if (namf) {
-            d->nam = namf->create(this);
-        } else {
+        d->nam = Wolkanlin::defaultNetworkAccessManager();
+        if (!d->nam) {
             d->nam = new QNetworkAccessManager(this);
             qCDebug(wlCore) << "Using default created" << d->nam;
         }

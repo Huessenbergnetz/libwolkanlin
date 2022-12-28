@@ -3,14 +3,14 @@ project(wolkanlin_tests)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Test REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} 5.6.0 REQUIRED COMPONENTS Test)
 
-set(TESTS_SERVER_URL "" CACHE STRING "URL to a server user for API tests. Can also be set via WOLKANLIN_TESTS_SERVER_URL environment variable.")
+set(TESTS_SERVER_URL "" CACHE STRING "URL to a server used for API tests. Can also be set via WOLKANLIN_TESTS_SERVER_URL environment variable.")
 set(TESTS_ADMIN_USERNAME "" CACHE STRING "User name of an admin account used for API tests. Can also be set via WOLKANLIN_TESTS_ADMIN_USERNAME environment variable.")
 set(TESTS_ADMIN_PASSWORD "" CACHE STRING "Password of an admin account used for API tests. Can also be set via WOLKANLIN_TESTS_ADMIN_PASSWORD environment variable.")
 set(TESTS_USER_USERNAME "" CACHE STRING "User name of a normal account used for API tests. Can also be set via WOLKANLIN_TESTS_USER_USERNAME environment variable.")
 set(TESTS_USER_PASSWORD "" CACHE STRING "Password of a normal account used for API tests. Can also be set via WOLKANLIN_TESTS_USER_PASSWORD environment variable.")
 option(TESTS_IGNORE_SSL_ERRORS "Ignore SSL errors when performing API tests. Can also be set via WOLKANLIN_TESTS_IGNORE_SSL_ERRORS environment variable.")
 
-add_executable(testdefaultvalues_exec testdefaultvalues.cpp testconfig.h testconfig.cpp testnamfactory.h testnamfactory.cpp)
+add_executable(testdefaultvalues_exec testdefaultvalues.cpp testconfig.h testconfig.cpp)
 add_test(NAME testdefaultvalues COMMAND testdefaultvalues_exec)
 target_link_libraries(testdefaultvalues_exec Qt${QT_VERSION_MAJOR}::Test Qt${QT_VERSION_MAJOR}::Network WolkanlinQt${QT_VERSION_MAJOR})
 

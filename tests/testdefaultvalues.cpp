@@ -4,9 +4,9 @@
  */
 
 #include "testconfig.h"
-#include "testnamfactory.h"
 #include <Wolkanlin/Global>
 #include <QObject>
+#include <QNetworkAccessManager>
 #include <QTest>
 #include <memory>
 
@@ -19,7 +19,7 @@ public:
 
 private slots:
     void testDefaultConfiguration();
-    void testNetworkAccessManagerFactory();
+    void testDefaultNetworkAccessManager();
 };
 
 DefaultValuesTest::DefaultValuesTest(QObject *parent)
@@ -37,11 +37,11 @@ void DefaultValuesTest::testDefaultConfiguration()
     QCOMPARE(Wolkanlin::defaultConfiguration(), c);
 }
 
-void DefaultValuesTest::testNetworkAccessManagerFactory()
+void DefaultValuesTest::testDefaultNetworkAccessManager()
 {
-    auto nf = std::make_unique<TestNamFactory>();
-    Wolkanlin::setNetworkAccessManagerFactory(nf.get());
-    QCOMPARE(Wolkanlin::networkAccessManagerFactory(), nf.get());
+    auto nam = new QNetworkAccessManager(this);
+    Wolkanlin::setDefaultNetworkAccessManager(nam);
+    QCOMPARE(Wolkanlin::defaultNetworkAccessManager(), nam);
 }
 
 QTEST_MAIN(DefaultValuesTest)

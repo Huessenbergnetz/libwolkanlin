@@ -32,19 +32,19 @@ public:
         m_configuration = config;
     }
 
-    AbstractNamFactory *namFactory() const
+    QNetworkAccessManager *networkAccessManager() const
     {
-        return m_namFactory;
+        return m_nam;
     }
 
-    void setNamFactory(AbstractNamFactory *factory)
+    void setNetworkAccessManager(QNetworkAccessManager *nam)
     {
-        m_namFactory = factory;
+        m_nam = nam;
     }
 
 private:
     AbstractConfiguration *m_configuration = nullptr;
-    AbstractNamFactory *m_namFactory = nullptr;
+    QNetworkAccessManager *m_nam = nullptr;
 };
 Q_GLOBAL_STATIC(DefaultValues, defVals)
 
@@ -70,26 +70,23 @@ void Wolkanlin::setDefaultConfiguration(AbstractConfiguration *configuration)
     defs->setConfiguration(configuration);
 }
 
-AbstractNamFactory *Wolkanlin::networkAccessManagerFactory()
+QNetworkAccessManager *Wolkanlin::defaultNetworkAccessManager()
 {
     const DefaultValues *defs = defVals();
     Q_ASSERT(defs);
 
-    defs->lock.lockForRead();
-    AbstractNamFactory *factory = defs->namFactory();
-    defs->lock.unlock();
-
-    return factory;
+    QReadLocker locker(&defs->lock);
+    return defs->networkAccessManager();
 }
 
-void Wolkanlin::setNetworkAccessManagerFactory(AbstractNamFactory *factory)
+void Wolkanlin::setDefaultNetworkAccessManager(QNetworkAccessManager *nam)
 {
     DefaultValues *defs = defVals();
     Q_ASSERT(defs);
 
     QWriteLocker locker(&defs->lock);
-    qCDebug(wlCore) << "Setting networkAccessManagerFactory to" << factory;
-    defs->setNamFactory(factory);
+    qCDebug(wlCore) << "Setting defaultNetworkAccessManager to" << nam;
+    defs->setNetworkAccessManager(nam);
 }
 
 QVersionNumber Wolkanlin::version()

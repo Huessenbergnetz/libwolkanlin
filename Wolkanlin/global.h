@@ -10,13 +10,14 @@
 #include <QVersionNumber>
 #include <QLocale>
 
+class QNetworkAccessManager;
+
 /*!
  * \brief The root namespace for libwolkanlin.
  */
 namespace Wolkanlin {
 
 class AbstractConfiguration;
-class AbstractNamFactory;
 
 /*!
  * \brief Sets a pointer to a global default \a configuration.
@@ -31,16 +32,16 @@ WOLKANLIN_EXPORT void setDefaultConfiguration(AbstractConfiguration *configurati
 WOLKANLIN_EXPORT AbstractConfiguration* defaultConfiguration();
 
 /*!
- * \brief Sets a pointer to a global network access manager \a factory.
- * \sa Wolkanlin::networkAccessManagerFactory()
+ * \brief Sets a pointer to a global default network access manager \a nam.
+ * \sa Wolkanlin::defaultNetworkAccessManager()
  */
-WOLKANLIN_EXPORT void setNetworkAccessManagerFactory(AbstractNamFactory *factory);
+WOLKANLIN_EXPORT void setDefaultNetworkAccessManager(QNetworkAccessManager *nam);
 
 /*!
- * \brief Returns a pointer to a global network access manager factory.
- * \sa Wolkanlin::setNetworkAccessManagerFactory()
+ * \brief Returns a pointer to a global default network access manager.
+ * \sa Wolkanlin::defaultNetworkAccessManager()
  */
-WOLKANLIN_EXPORT AbstractNamFactory* networkAccessManagerFactory();
+WOLKANLIN_EXPORT QNetworkAccessManager* defaultNetworkAccessManager();
 
 /*!
  * \brief Returns the version number of the currently used libwolkanlin.
